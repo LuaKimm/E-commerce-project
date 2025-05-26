@@ -1,3 +1,9 @@
+// src/payload.config.ts
+import dotenv from "dotenv";
+dotenv.config();
+
+console.log("🧪 MONGODB_URI from .env:", process.env.MONGODB_URI);
+
 // storage-adapter-import-placeholder
 import { mongooseAdapter } from "@payloadcms/db-mongodb";
 import { payloadCloudPlugin } from "@payloadcms/payload-cloud";
@@ -28,7 +34,7 @@ export default buildConfig({
     outputFile: path.resolve(dirname, "payload-types.ts"),
   },
   db: mongooseAdapter({
-    url: process.env.DATABASE_URI || "",
+    url: process.env.MONGODB_URI || "",
   }),
   sharp,
   plugins: [
