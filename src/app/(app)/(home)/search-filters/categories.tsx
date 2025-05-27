@@ -10,11 +10,7 @@ export const Categories = ({ data }: Props) => {
     <div>
       {data.map((category: Category) => (
         <div key={category.id}>
-          <CategoryDropdown
-            category={category}
-            isActive={false}
-            isNavigationHovered={false}
-          />
+          <CategoryDropdown category={category} isActive={false} isNavigationHovered={false} />
         </div>
       ))}
     </div>

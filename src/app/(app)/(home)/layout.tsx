@@ -37,7 +37,7 @@ const Layout = async ({ children }: Props) => {
     <div className="flex flex-col min-h-screen">
       <nav>
         <Navbar />
-        <SearchFilters data={data} />
+        <SearchFilters data={formattedData} />
       </nav>
       <div className="flex-1 bg-[#F4F4F0]">{children}</div>
       <Footer />
