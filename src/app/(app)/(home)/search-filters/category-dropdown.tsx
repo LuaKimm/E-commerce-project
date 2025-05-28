@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Category } from "@/payload-types";
 import { useRef, useState } from "react";
+import { useDropdownPosition } from "./use-dropdown-position";
+import { SubcategoryMenu } from "./subcategory-menu";
 
 interface Props {
   category: Category;
@@ -13,6 +15,7 @@ interface Props {
 export const CategoryDropdown = ({ category, isActive, isNavigationHovered }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const { getDropdownPosition } = useDropdownPosition(dropdownRef);
 
   const onMouseEnter = () => {
     if (category.subcategories) {
@@ -22,7 +25,9 @@ export const CategoryDropdown = ({ category, isActive, isNavigationHovered }: Pr
   };
 
   const onMouseLeave = () => setIsOpen(false);
-  console.log("🔍 subcategories:", category.subcategories);
+
+  const dropdownPosition = getDropdownPosition();
+
   return (
     <div
       className="relative overflow-visible"
@@ -50,6 +55,7 @@ export const CategoryDropdown = ({ category, isActive, isNavigationHovered }: Pr
           />
         )}
       </div>
+      <SubcategoryMenu category={category} isOpen={isOpen} position={dropdownPosition} />
     </div>
   );
 };
