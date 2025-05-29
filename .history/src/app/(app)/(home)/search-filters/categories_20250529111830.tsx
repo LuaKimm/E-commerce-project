@@ -1,11 +1,7 @@
 "use client";
-import { cn } from "@/lib/utils";
 import { CategoryDropdown } from "./category-dropdown";
 import { CustomCategory } from "../types";
 import { useEffect, useRef, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { ListFilterIcon } from "lucide-react";
-import { CategoriesSidebar } from "./categories-sidebar";
 
 interface Props {
   data: CustomCategory[];
@@ -55,8 +51,6 @@ export const Categories = ({ data }: Props) => {
   }, [data.length]);
   return (
     <div className="relative w-full">
-      {/* categories sidebar */}
-      <CategoriesSidebar open={isSidebarOpen} onOpenChange={setIsSidebarOpen} data={data} />
       {/* Hidden div to measure all items */}
       <div
         ref={measureRef}
@@ -81,28 +75,15 @@ export const Categories = ({ data }: Props) => {
         onMouseEnter={() => setIsAnyHovered(true)}
         onMouseLeave={() => setIsAnyHovered(false)}
       >
-        {data.slice(0, visibleCount).map((category) => (
+        {data.map((category) => (
           <div key={category.id}>
             <CategoryDropdown
               category={category}
               isActive={activeCategory === category.slug}
-              isNavigationHovered={isAnyHovered}
+              isNavigationHovered={false}
             />
           </div>
         ))}
-
-        <div ref={viewAllRef} className="shrink-0">
-          <Button
-            className={cn(
-              "h-11 px-4 bg-transparent border-transparent rounded-full hover:bg-white hover:border-primary text-black",
-              isActiveCategoryHidden && !isAnyHovered && "bg-white border-primary"
-            )}
-            onClick={() => setIsSidebarOpen(true)}
-          >
-            View All
-            <ListFilterIcon className="ml-2" />
-          </Button>
-        </div>
       </div>
     </div>
   );

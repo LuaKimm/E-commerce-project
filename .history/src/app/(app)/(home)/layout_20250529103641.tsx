@@ -23,7 +23,7 @@ const Layout = async ({ children }: Props) => {
         exists: false,
       },
     },
-    sort: "name",
+    sort: name,
   });
   const formattedData: CustomCategory[] = data.docs.map((doc) => ({
     ...doc,
