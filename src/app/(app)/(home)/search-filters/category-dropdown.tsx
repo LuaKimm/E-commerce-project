@@ -6,7 +6,7 @@ import { useRef, useState } from "react";
 import { useDropdownPosition } from "./use-dropdown-position";
 import { SubcategoryMenu } from "./subcategory-menu";
 import { CustomCategory } from "../types";
-import { Link } from "lucide-react";
+import Link from "next/link";
 
 interface Props {
   category: CustomCategory;
